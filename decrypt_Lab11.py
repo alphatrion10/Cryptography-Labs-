@@ -17,15 +17,12 @@ def reverse_step1(text):
 def reverse_step2(text):
     return base64.b64decode(text, validate=True).decode('ascii')
 
-# Read intercepted message
 with open("intercepted.txt", "r") as f:
     ciphertext = f.read().strip()
 
-# Start with the original intercepted message
 result = ciphertext
 layer = 0
 
-# Reverse each transformation
 while result:
     identifier = result[0]
     payload = result[1:]
@@ -47,7 +44,6 @@ while result:
     print(f"Layer {layer}: reversed step {identifier}")
     print("Preview:", repr(result[:60]))
 
-    # Temporary stopping condition
     if result and result[0] not in '123':
         print("\nPossible decoded message:")
         print(result)
